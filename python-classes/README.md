@@ -22,3 +22,15 @@
 
 <h4>6. Coordinates of a square</h4>
 <p>Write a class Square that defines a square by: (based on 5-square.py)</p>
+
+<h4>7. Singly linked list</h4>
+<p>Write a class Node that defines a node of a singly linked list</p>
+
+<h4>8. Print Square instance</h4>
+<p>Write a class Square that defines a square by: (based on 6-square.py)</p>
+
+<h4>9. Compare 2 squares</h4>
+<p>Write a class Square that defines a square by: (based on 4-square.py)</p>
+
+<h4>10. ByteCode -> Python #5</h4>
+<p>Python class MagicClass that does exactly the same as Python bytecode</p>
