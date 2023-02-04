@@ -22,7 +22,6 @@ def matrix_mul(m_a, m_b):
         ValueError: if m_a and m_b can't be multiplied
     """
 
-
     if not isinstance(m_a, list):
         raise TypeError("m_a must be a list")
 
