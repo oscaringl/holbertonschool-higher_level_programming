@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 import sys
-''' 
+'''
     column first element, row second element
 '''
 def reject(board):
