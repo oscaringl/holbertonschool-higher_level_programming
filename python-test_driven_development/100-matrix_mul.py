@@ -6,7 +6,6 @@ Module composed by a function that multiplies 2 matrices
 
 def matrix_mul(m_a, m_b):
     """ Function that multiplies 2 matrices
-
     Args:
         m_a: matrix a
         m_b: matrix b
