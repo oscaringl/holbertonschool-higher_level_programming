@@ -1,12 +1,23 @@
-#!/usr/bin/python3
+#!/usr/bin/python3.5
 """
-Module 101-lazy_matrix_mul
-Contains method to multiply matrix using numpy module (pip3 install numpy)
-https://docs.scipy.org/doc/numpy-1.14.0/reference/generated/numpy.matmul.html
+
+Module composed by a function that multiplies 2 matrices
+
 """
-import numpy
+import numpy as np
 
 
 def lazy_matrix_mul(m_a, m_b):
-    """Returns matrix multiplied"""
-    return numpy.matmul(m_a, m_b)
+    """ Function that multiplies 2 matrices
+
+    Args:
+        m_a: matrix a
+        m_b: matrix b
+
+    Returns:
+        result of the multiplication
+
+
+    """
+
+    return (np.matmul(m_a, m_b))
