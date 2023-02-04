@@ -1,56 +1,92 @@
 #!/usr/bin/python3
 
-"""Define a class Square."""
-
 
 class Square:
-    """Represent a square."""
+    """Square class."""
 
-    def __init__(self, size=0):
-        """Initialize a new square.
-
+    def __init__(self, size=0, position=(0, 0)):
+        """__init__ method that sets the size and position of square.
         Args:
-            size (int): The size of the new square.
+            size (int): size of Square
+            position (tuple): poisition of Square
+
         """
         self.size = size
+        self.position = position
+
+    def area(self):
+        """Gets the area of the Square.
+
+        Returns:
+            Area of squre
+
+        """
+        return self.__size * self.__size
 
     @property
     def size(self):
-        """Get/set the current size of the square."""
-        return (self.__size)
+        """gets size of square."""
+        return self.__size
 
     @size.setter
     def size(self, value):
+        """size setter  method that sets the size of square.
+        Args:
+            value (int): size of Square
+        Raises:
+            TypeError: If `value` is not an integer.
+            ValueError: If `value` is less than 0.
+
+        """
         if not isinstance(value, int):
             raise TypeError("size must be an integer")
-        elif value < 0:
+        if value < 0:
             raise ValueError("size must be >= 0")
         self.__size = value
 
-    def area(self):
-        """Return the current area of the square."""
-        return (self.__size * self.__size)
+    @property
+    def position(self):
+        """gets position of square."""
+        return self.__position
 
-    def __eq__(self, other):
-        """Define the == comparision to a Square."""
-        return self.area() == other.area()
+    @position.setter
+    def position(self, value):
+        """position setter method that sets position of Square.
+        Args:
+            value (tuple): tuple of two positive integer coordinates
+        Raises:
+            TypeError: If `value` is not a tuple of two positive integers
 
-    def __ne__(self, other):
-        """Define the != comparison to a Square."""
-        return self.area() != other.area()
+        """
+        if not isinstance(value, tuple):
+            raise TypeError("position must be a tuple of 2 positive integers")
+        elif len(value) != 2:
+            raise TypeError("position must be a tuple of 2 positive integers")
+        elif not isinstance(value[0], int) or not isinstance(value[1], int):
+            raise TypeError("position must be a tuple of 2 positive integers")
+        elif (value[0] < 0 or value[1] < 0):
+            raise TypeError("position must be a tuple of 2 positive integers")
+        else:
+            self.__position = value
 
-    def __lt__(self, other):
-        """Define the < comparison to a Square."""
-        return self.area() < other.area()
+    def __str__(self):
+        """Prints a # representation of square based on size."""
+        sqr_str = ''
+        if self.__size == 0:
+            return sqr_str
+        else:
+            for i in range(self.__position[1]):
+                sqr_str += '\n'
+            for j in range(self.__size - 1):
+                sqr_str += ' ' * self.__position[0] + '#' * self.__size + '\n'
+            sqr_str += ' ' * self.__position[0] + '#' * self.__size
+        return sqr_str
 
-    def __le__(self, other):
-        """Define the <= comparison to a Square."""
-        return self.area() <= other.area()
+if __name__ == '__main__':
+    my_square = Square(5, (0, 0))
+    print(my_square)
 
-    def __gt__(self, other):
-        """Define the > comparison to a Square."""
-        return self.area() > other.area()
+    print("--")
 
-    def __ge__(self, other):
-        """Define the >= compmarison to a Square."""
-        return self.area() >= other.area()
+    my_square = Square(5, (4, 1))
+    print(my_square)
