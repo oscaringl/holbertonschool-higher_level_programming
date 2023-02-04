@@ -1,24 +1,23 @@
-# run test with python3 -m doctest -v ./tests/101-lazy_matrix_mul.txt
+#!/usr/bin/python3.5
+"""
 
-First import method to test
->>> lazy_matrix_mul = __import__('101-lazy_matrix_mul').lazy_matrix_mul
+Module composed by a function that multiplies 2 matrices
 
-SUCCESS CASES:
+"""
+import numpy as np
 
-Test signed and unsigned ints and floats in same size lists in list matrix:
-     >>> m_a = [[1, 2], [3, 4]]
-     >>> m_b = [[2, 0], [1, 2]]
-     >>> print(lazy_matrix_mul(m_a, m_b))
-     [[ 4  4]
-      [10  8]]
 
-     >>> m_a = [[-2.0, -3.0]]
-     >>> m_b = [[-2.0], [-4.0]]
-     >>> print(lazy_matrix_mul(m_a, m_b))
-     [[16.]]
+def lazy_matrix_mul(m_a, m_b):
+    """ Function that multiplies 2 matrices
 
-FAIL CASES:
+    Args:
+        m_a: matrix a
+        m_b: matrix b
 
-Test empty matrix:
-Test different sized lists in matrix:
-Test matrix with other data types:
+    Returns:
+        result of the multiplication
+
+
+    """
+
+    return (np.matmul(m_a, m_b))
