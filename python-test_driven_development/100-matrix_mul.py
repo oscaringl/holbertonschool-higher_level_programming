@@ -1,8 +1,6 @@
 #!/usr/bin/python3
 """
-
 Module composed by a function that multiplies 2 matrices
-
 """
 
 
@@ -23,7 +21,6 @@ def matrix_mul(m_a, m_b):
         TypeError: if the lists of m_a or m_b don't have integers or floats
         TypeError: if the rows of m_a or m_b don't have the same size
         ValueError: if m_a and m_b can't be multiplied
-
     """
 
 
