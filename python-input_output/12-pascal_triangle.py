@@ -1,15 +1,16 @@
 #!/usr/bin/python3
 """Function def pascal_triangle(n)"""
 
-def pascal_triangle(n):
-    if n <= 0:
-        return []
-    triangle = []
-    row = []
+
+def pascal_triangle(n=4500):
+    """Print pascal triangle"""
+    pascal = [[0]*i for i in range(1, n+1)]
+    cmpt = 0
     for i in range(n):
-        row = [1]
-        if i > 0:
-            for j in range(i):
-                row.append(sum(triangle[-1][j:j+2]))
-        triangle.append(row)
-    return triangle
+        pascal[i][0] = 1
+        pascal[i][-1] = 1
+        for j in range(0, i//2):
+            pascal[i][j+1] = pascal[i-1][j] + pascal[i-1][j+1]
+            pascal[i][i-j-1] = pascal[i-1][j] + pascal[i-1][j+1]
+
+    return pascal
