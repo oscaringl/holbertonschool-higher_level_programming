@@ -1,5 +1,7 @@
 #!/usr/bin/python3
-"""Contains tests for Base class"""
+"""
+Test differents behaviors of the Base class
+"""
 import unittest
 import pep8
 import os
@@ -9,9 +11,13 @@ from models.square import Square
 
 
 class TestBase(unittest.TestCase):
-    """A class to test Base Class"""
+    """
+    A class to test Base Class
+    """
     def test_pep8_base(self):
-        """Test that checks PEP8"""
+        """
+        Test that checks PEP8
+        """
         syntax = pep8.StyleGuide(quit=True)
         check = syntax.check_files(['models/base.py'])
         self.assertEqual(
@@ -20,7 +26,9 @@ class TestBase(unittest.TestCase):
         )
 
     def test_id_as_positive(self):
-        """Test for positive Base Class id"""
+        """
+        Test for positive Base Class id
+        """
         base_instance = Base(110)
         self.assertEqual(base_instance.id, 110)
         base_instance = Base(30)
@@ -36,7 +44,9 @@ class TestBase(unittest.TestCase):
         self.assertEqual(base_instance.id, -10)
 
     def test_id_as_none(self):
-        """Test for None Base Class id"""
+        """
+        Test for None Base Class id
+        """
         base_instance = Base()
         self.assertEqual(base_instance.id, 1)
         base_instance = Base(None)
@@ -49,14 +59,18 @@ class TestBase(unittest.TestCase):
         self.assertEqual(base_instance.id, "Hola soy Goku")
 
     def test_to_json_string(self):
-        """Test to_json_string method"""
+        """
+        Test to_json_string method
+        """
         rect_instance = Rectangle(10, 17, 2, 8, 70)
         rect_data = re1.to_dictionary()
         json_data = Base.to_json_string([rect_data])
         self.assertEqual(type(json_data), str)
 
     def test_empty_to_json_string(self):
-        """Test for a empty data on to_json_string method"""
+        """
+        Test for a empty data on to_json_string method
+        """
         empty_data = []
         json_data = Base.to_json_string(empty_data)
         self.assertEqual(json_data, "[]")
@@ -66,13 +80,17 @@ class TestBase(unittest.TestCase):
         self.assertEqual(json_data, "[]")
 
     def test_instance(self):
-        """Test Base Class instance"""
+        """
+        Test Base Class instance
+        """
         base_instance = Base()
         self.assertEqual(type(base_instance), Base)
         self.assertTrue(isinstance(base_instance, Base))
 
     def test_to_json_string(self):
-        """Test a normal to_json_string functionality"""
+        """
+        Test a normal to_json_string functionality
+        """
         rect_data = {'id': 31, 'x': 14, 'y': 10, 'width': 5, 'height': 5}
         json_data = Base.to_json_string([rect_data])
 
@@ -84,7 +102,9 @@ class TestBase(unittest.TestCase):
         )
 
     def test_wrong_to_json_string(self):
-        """Test a wrong functionality of to_json_string method"""
+        """
+        Test a wrong functionality of to_json_string method
+        """
         json_data = Base.to_json_string(None)
         self.assertEqual(json_data, "[]")
 
@@ -104,7 +124,9 @@ class TestBase(unittest.TestCase):
         self.assertEqual(warn, str(msg.exception))
 
     def test_wrong_save_to_file(self):
-        """Test save_to_file method"""
+        """
+        Test save_to_file method
+        """
         with self.assertRaises(AttributeError) as msg:
             Base.save_to_file([Base(1), Base(2)])
 
