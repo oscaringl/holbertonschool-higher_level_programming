@@ -4,24 +4,31 @@
  * The first argument is the Movie ID - example: 3 = “Return of the Jedi”
  */
 const request = require('request');
-request.get('http://swapi.co/api/films/' + process.argv[2], (err, resp, body) => {
-  if (err) console.log(err);
-  else if (resp.statusCode === 200) {
-    let film = JSON.parse(body);
-    let promises = [];
-    for (let ch of film.characters) {
-      promises.push(new Promise((resolve, reject) => {
-        request.get(ch, (err, resp, body) => {
-          if (err) {
-            reject(err);
-          } else if (resp.statusCode === 200) {
-            resolve(JSON.parse(body).name);
-          } else {
-            reject(Error('Unknown'));
-          }
-        });
-      }));
+const url = 'http://swapi.co/api/films/';
+let id = parseInt(process.argv[2], 10);
+let characters = [];
+
+request(url, function (err, response, body) {
+  if (err == null) {
+    const resp = JSON.parse(body);
+    const results = resp.results;
+    if (id < 4) {
+      id += 3;
+    } else {
+      id -= 3;
     }
-    Promise.all(promises).then((names) => names.forEach((name) => console.log(name)));
+    for (let i = 0; i < results.length; i++) {
+      if (results[i].episode_id === id) {
+        characters = results[i].characters;
+        break;
+      }
+    }
+    for (let j = 0; j < characters.length; j++) {
+      request(characters[j], function (err, response, body) {
+        if (err == null) {
+          console.log(JSON.parse(body).name);
+        }
+      });
+    }
   }
 });
