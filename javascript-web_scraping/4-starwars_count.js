@@ -3,21 +3,17 @@
  * print the number of movies where the character
  * “Wedge Antilles” is present.
  */ 
- const request = require('request');
- request(process.argv[2], function (error, response, body) {
-   if (response.statusCode === 200) {
-     let count = 0;
-     const list = JSON.parse(body).results;
-     for (const people in list) {
-       const characters = list[people].characters;
-       for (const character in characters) {
-         if (characters[character].endsWith('/18/')) {
-           count++;
-         }
-       }
-     }
-     console.log(count);
-   } else {
-     console.log(error);
-   }
- });
+const request = require('request');
+request.get(process.argv[2], (err, response, body) => {
+  if (err) console.log(err);
+  else if (response.statusCode === 200) {
+    let films = JSON.parse(body).results;
+    let num = 0;
+    for (let film of films) {
+      for (let ch of film.characters) {
+        if (ch.endsWith('18/')) { num++; break; }
+      }
+    }
+    console.log(num);
+  }
+});
