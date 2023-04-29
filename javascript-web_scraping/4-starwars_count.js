@@ -4,16 +4,17 @@
  * “Wedge Antilles” is present.
  */ 
 const request = require('request');
-request.get(process.argv[2], (err, response, body) => {
-  if (err) console.log(err);
-  else if (response.statusCode === 200) {
-    let films = JSON.parse(body).results;
-    let num = 0;
-    for (let film of films) {
-      for (let ch of film.characters) {
-        if (ch.endsWith('18/')) { num++; break; }
+
+let count = 0;
+
+request.get(process.argv[2], function (error, response, body) {
+  if (error) console.log(error);
+  else {
+    for (const film of JSON.parse(body).results) {
+      for (const character of film.characters) {
+        if (character.includes('18')) ++count;
       }
     }
-    console.log(num);
+    console.log(count);
   }
 });
